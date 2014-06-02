@@ -31,6 +31,7 @@ import org.vertx.java.core.spi.cluster.NodeListener;
 import org.vertx.java.spi.cluster.impl.zookeeper.util.ConfigInjection;
 import org.vertx.java.spi.cluster.impl.zookeeper.util.Maps;
 import org.vertx.java.spi.cluster.impl.zookeeper.util.PropertiesHelper;
+import org.vertx.java.spi.cluster.impl.zookeeper.util.Strings;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -190,11 +191,7 @@ public class ZooKeeperClusterManager implements ClusterManager {
     }
 
     protected String toNodeId(String path) {
-        if (path.startsWith(NODES_PATH_PREFIX)) {
-            return path.substring(NODES_PATH_PREFIX.length());
-        } else {
-            return path;
-        }
+        return Strings.removePrefix(path, NODES_PATH_PREFIX);
     }
 
     protected void handleException(Throwable e) {
