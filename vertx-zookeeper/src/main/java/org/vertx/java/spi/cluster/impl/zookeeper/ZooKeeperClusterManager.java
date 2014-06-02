@@ -177,7 +177,7 @@ public class ZooKeeperClusterManager implements ClusterManager {
             log.info("nodeAdded: " + id);
         }
         if (nodeListener != null) {
-            nodeListener.nodeLeft(id);
+            nodeListener.nodeAdded(id);
         }
     }
 
@@ -186,7 +186,7 @@ public class ZooKeeperClusterManager implements ClusterManager {
             log.info("nodeRemoved: " + id);
         }
         if (nodeListener != null) {
-            nodeListener.nodeAdded(id);
+            nodeListener.nodeLeft(id);
         }
     }
 
